@@ -21,21 +21,21 @@ public class Vector2D {
 		this.y = v.y;
 	}
 	
-	public Vector2D add(Vector2D v) {
-		double x = this.x + v.x;
-		double y = this.y + v.y;
+	public static Vector2D add(Vector2D v1, Vector2D v2) {
+		double x = v1.x + v2.x;
+		double y = v1.y + v2.y;
 		return new Vector2D(x, y);
 	}
 	
-	public Vector2D subtract(Vector2D v) {
-		double x = this.x - v.x;
-		double y = this.y - v.y;
+	public static Vector2D subtract(Vector2D v1, Vector2D v2) {
+		double x = v1.x - v2.x;
+		double y = v1.y - v2.y;
 		return new Vector2D(x, y);
 	}
 	
-	public Vector2D divide(Vector2D v) {
-		double x = this.x / v.x;
-		double y = this.y / v.y;
+	public static Vector2D divide(Vector2D v1, Vector2D v2) {
+		double x = v1.x / v2.x;
+		double y = v1.y / v2.y;
 		return new Vector2D(x, y);
 	}
 	
@@ -51,40 +51,40 @@ public class Vector2D {
 		return this.multiply(-1);
 	}
 
-	public Vector2D scalarProduct(Vector2D v) {
-		return new Vector2D(this.x*v.x, this.y*v.y);
+	public static Vector2D scalarProduct(Vector2D v1, Vector2D v2) {
+		return multiply(v1, v2);
 	}
 	
-	public Vector2D dotProduct(Vector2D v) {
-		return scalarProduct(v);
+	public static Vector2D dotProduct(Vector2D v1, Vector2D v2) {
+		return multiply(v1, v2);
 	}
 	
-	public Vector2D multiply(Vector2D v) {
-		return scalarProduct(v);
+	public static Vector2D multiply(Vector2D v1, Vector2D v2) {
+		return new Vector2D(v1.x*v2.x, v1.y*v2.y);
 	}
 	
-	public Vector2D multiply(int multiplier) {
+	public Vector2D multiply(double multiplier) {
 		return new Vector2D(this.x*multiplier, this.y*multiplier);
 	}
 	
-	public Vector2D connectionVector2D(Vector2D v) {
-		return v.subtract(this);
+	public static Vector2D connectionVector2D(Vector2D v1, Vector2D v2) {
+		return subtract(v2, v1);
 	}
 	
-	public double determinant(Vector2D v) {
-		return this.x*v.y - this.y*v.x;
+	public static double determinant(Vector2D v1, Vector2D v2) {
+		return v1.x*v2.y - v1.y*v2.x;
 	}
 	
-	public double crossProduct(Vector2D v) {
-		return determinant(v);
+	public static double crossProduct(Vector2D v1, Vector2D v2) {
+		return determinant(v1, v2);
 	}
 	
-	public boolean isLinearlyDependent(Vector2D v) {
-		return determinant(v) == 0;
+	public static boolean isLinearlyDependent(Vector2D v1, Vector2D v2) {
+		return determinant(v1, v2) == 0;
 	}
 	
-	public boolean isParallel(Vector2D v) {
-		return isLinearlyDependent(v);
+	public static boolean isParallel(Vector2D v1, Vector2D v2) {
+		return isLinearlyDependent(v1, v2);
 	}
 	
 }
